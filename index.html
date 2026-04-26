@@ -1228,6 +1228,15 @@
       </div>
       <span style="margin-left:auto;color:var(--text2)">›</span>
     </div>
+
+    <div class="role-card" onclick="guestMode()" style="border-style:dashed">
+      <div class="r-icon" style="background:rgba(139,148,158,0.15)">👁️</div>
+      <div>
+        <div class="r-title">Guest Mode</div>
+        <div class="r-desc">Explore the app without signing in</div>
+      </div>
+      <span style="margin-left:auto;color:var(--text2)">›</span>
+    </div>
   </div>
 
   <!-- LOGIN -->
@@ -1871,6 +1880,53 @@
     </div>
   </div>
 
+  <!-- GUEST MODE PICKER -->
+  <div class="screen" id="guest-pick">
+    <div style="padding:16px 20px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="showScreen('role-select')">
+      <span style="font-size:20px;color:var(--text2)">‹</span>
+      <span style="color:var(--text2);font-size:14px">Back</span>
+    </div>
+    <div style="flex:1;padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <div class="logo-wrap" style="margin-bottom:8px">
+        <div class="logo-icon">🐧</div>
+        <h1>Guest Mode</h1>
+        <p style="text-align:center;color:var(--text2);font-size:13px;margin-top:6px">No login required. Pick a view to explore.</p>
+      </div>
+
+      <div class="role-card" onclick="showScreen('dashboard');setNavActive('home-nav')">
+        <div class="r-icon" style="background:rgba(59,130,246,0.15)">👤</div>
+        <div>
+          <div class="r-title">Customer View</div>
+          <div class="r-desc">Book services, track repairs, pay invoices</div>
+        </div>
+        <span style="margin-left:auto;color:var(--text2)">›</span>
+      </div>
+
+      <div class="role-card" onclick="showScreen('technician')">
+        <div class="r-icon" style="background:rgba(249,115,22,0.15)">🔧</div>
+        <div>
+          <div class="r-title">Technician View</div>
+          <div class="r-desc">View job queue and repair orders</div>
+        </div>
+        <span style="margin-left:auto;color:var(--text2)">›</span>
+      </div>
+
+      <div class="role-card" onclick="showScreen('admin')">
+        <div class="r-icon" style="background:rgba(34,197,94,0.15)">⚙️</div>
+        <div>
+          <div class="r-title">Admin View</div>
+          <div class="r-desc">Dashboard, orders, revenue, and staff</div>
+        </div>
+        <span style="margin-left:auto;color:var(--text2)">›</span>
+      </div>
+
+      <div style="background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.2);border-radius:12px;padding:14px;display:flex;gap:10px;align-items:flex-start">
+        <span style="font-size:18px">ℹ️</span>
+        <div style="font-size:13px;color:var(--text2);line-height:1.5">You are browsing as a guest. All data shown is sample data. To access full features, sign in with an account.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast"></div>
 </div>
 
@@ -1878,6 +1934,10 @@
   let currentRole = 'customer';
   let selectedService = '';
   let selectedPrice = '';
+
+  function guestMode() {
+    showScreen('guest-pick');
+  }
 
   function goToLogin(role) {
     currentRole = role;
